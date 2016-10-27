@@ -19,6 +19,7 @@ export function evaluate(json: any): any {
 		"function reference": evaluateFunctionReference,
 		"if-then-else": evaluateIfThenElse,
 		"issue": () => undefined,
+		"local value definition": evaluateLocalValueDefinition,
 		"value reference": evaluateValueReference
 	});
 
@@ -85,6 +86,17 @@ export function evaluate(json: any): any {
 			}
 			return issue;
 		}
+	}
+
+	function evaluateLocalValueDefinition(localValueDefinition: sTypes.ILocalValueDefinition, context: IContext): any {
+		const name = localValueDefinition.name;
+		if (!name || !isString(name)) {
+			return makeIssue(`Local value definition lacks a string-valued name field.`, localValueDefinition);
+		}
+
+		context.localValues[name] = localValueDefinition;
+
+		return evaluateInt(localValueDefinition.value, context);
 	}
 
 	function evaluateValueReference(valueRef: sTypes.IValueReference, context: IContext): any {
