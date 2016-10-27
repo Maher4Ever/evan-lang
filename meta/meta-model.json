@@ -72,6 +72,17 @@
 			"text": "An issue caused by deeper evaluation. <object> can optionally contain the offending object causing the issue."
 		}
 	},
+	"local value definition": {
+		"properties": {
+			"name": { "type": "string" },
+			"type": { "type": "string", "optional": true },
+			"value": { "type": "any" }
+		},
+		"description": {
+			"$sType": "comments",
+			"text": "Definition of a local (to the program), named value. The value is available for program contents _after_ the definition."
+		}
+	},
 	"value reference": {
 		"properties": {
 			"name": { "type": "string" }
