@@ -109,7 +109,7 @@ function attributeName(typeName) {
 
 
 function fileName(typeName) {
-	return typeName.replace(" ", "-");
+	return typeName.replace(/[ ]/g, "-");
 }
 
 
