@@ -83,6 +83,15 @@
 			"text": "Definition of a local (to the program), named value. The value is available for program contents _after_ the definition."
 		}
 	},
+	"local value reference": {
+		"properties": {
+			"name": { "type": "string" }
+		},
+		"description": {
+			"$sType": "comments",
+			"text": "A reference to named local value defined _before_ the reference."
+		}
+	},
 	"value reference": {
 		"properties": {
 			"name": { "type": "string" }
