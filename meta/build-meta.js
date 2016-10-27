@@ -78,7 +78,7 @@ function generateTypeWidgetSkeleton(typeName) {
 		"",
 		"import {dispatch} from \"../dispatcher\";",
 		"import {editorState} from \"../state\";",
-		"import {IFunctionApplication} from \"../../../core/semantics-types_gen\";",
+		"import {" + interfaceTypeName(typeName) + "} from \"../../../core/semantics-types_gen\";",
 		"",
 		"",
 		"@observer",
