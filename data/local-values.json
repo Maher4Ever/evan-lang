@@ -1,0 +1,31 @@
+[
+	{
+		"$sType": "local value definition",
+		"name": "x",
+		"type": "number",
+		"value": 2
+	},
+	{
+		"$sType": "local value definition",
+		"name": "y",
+		"type": "number",
+		"value": 3
+	},
+	{
+		"$sType": "local value definition",
+		"name": "z",
+		"type": "number",
+		"value": {
+			"$sType": "binary operation",
+			"operator": "+",
+			"left": {
+				"$sType": "local value reference",
+				"name": "x"
+			},
+			"right": {
+				"$sType": "local value reference",
+				"name": "y"
+			}
+		}
+	}
+]
