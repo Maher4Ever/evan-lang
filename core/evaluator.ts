@@ -20,6 +20,7 @@ export function evaluate(json: any): any {
 		"if-then-else": evaluateIfThenElse,
 		"issue": () => undefined,
 		"local value definition": evaluateLocalValueDefinition,
+		"local value reference": evaluateLocalValueReference,
 		"value reference": evaluateValueReference
 	});
 
@@ -97,6 +98,19 @@ export function evaluate(json: any): any {
 		context.localValues[name] = localValueDefinition;
 
 		return evaluateInt(localValueDefinition.value, context);
+	}
+
+	function evaluateLocalValueReference(localValueReference: sTypes.ILocalValueReference, context: IContext): any {
+		const name = localValueReference.name;
+		if (!name || !isString(name)) {
+			return makeIssue(`Local value reference has no name.`, localValueReference);
+		}
+
+		if (!(name in context.localValues)) {
+			return makeIssue(`The referenced local value ${name} is not defiend`, localValueReference)
+		}
+
+		return evaluateInt(context.localValues[name].value, context);
 	}
 
 	function evaluateValueReference(valueRef: sTypes.IValueReference, context: IContext): any {
