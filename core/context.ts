@@ -13,10 +13,12 @@ export function cloneContext(context: IContext): IContext {
 	return cloneDeep(context);
 }
 
-export const emptyContext: IContext = {
-	functionDefinitions: {},
-	letValues: {},
-	localValues: {}
+export function createEmptyContext(): IContext {
+	return {
+		functionDefinitions: {},
+		letValues: {},
+		localValues: {}
+	}
 };
 
 // TODO  make into a class and be able to nest and such (scoping!)

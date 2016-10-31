@@ -2,14 +2,14 @@
 
 import {isBoolean, isString} from "lodash";
 
-import {IContext, cloneContext, emptyContext} from "../core/context";
+import {IContext, cloneContext, createEmptyContext} from "../core/context";
 import {makeIssue, isIssue} from "../core/issues";
 import {makeMapper} from "../core/mapper";
 import * as sTypes from "../core/semantics-types_gen";
 import {isSemanticsTyped} from "../core/util";
 
 
-export function evaluate(json: any): any {
+export function evaluate(json: any, context: IContext = createEmptyContext()): any {
 
 	const evaluateInt = makeMapper("evaluate", {
 		"binary operation": evaluateBinaryOperation,
@@ -24,8 +24,7 @@ export function evaluate(json: any): any {
 		"value reference": evaluateValueReference
 	});
 
-	return evaluateInt(json, emptyContext);
-
+	return evaluateInt(json, context);
 
 	function evaluateBinaryOperation(operation: sTypes.IBinaryOperation, context: IContext): any {
 		const leftEval = evaluateInt(operation.left, context);
