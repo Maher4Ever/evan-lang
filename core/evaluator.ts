@@ -9,6 +9,14 @@ import * as sTypes from "../core/semantics-types_gen";
 import {isSemanticsTyped} from "../core/util";
 
 
+export function functionDefinitionById($id: string, context: IContext) : sTypes.IFunctionDefinition {
+	return context.functionDefinitions[$id];
+}
+
+export function localValueById($id: string, context: IContext) : sTypes.ILocalValueDefinition {
+	return context.localValues[$id];
+}
+
 export function evaluate(json: any, context: IContext = createEmptyContext()): any {
 
 	const evaluateInt = makeMapper("evaluate", {
@@ -56,19 +64,25 @@ export function evaluate(json: any, context: IContext = createEmptyContext()): a
 	}
 
 	function evaluateFunctionReference(call: sTypes.IFunctionReference, context: IContext): sTypes.IFunctionDefinition | sTypes.IIssue | void {
-		if (!call.name || !isString(call.name)) {
-			return makeIssue(`Function reference has no name.`, call);
+		if (!call.$id || !isString(call.$id)) {
+			return makeIssue(`Function reference has no $id field.`, call);
 		}
-		return context.functionDefinitions[call.name];
+		return functionDefinitionById(call.$id, context);
 	}
 
 	function evaluateFunctionDefinition(definition: sTypes.IFunctionDefinition, context: IContext): sTypes.IIssue | void {
+		const $id = definition.$id;
+		if (!$id || !isString($id)) {
+			return makeIssue(`Function definition lacks an $id field.`, definition);
+		}
+		// TODO: validate UUID (maybe using the uuid-validate package once it's in DefinitelyTyped)
+
 		const name = definition.name;
 		if (!name || !isString(name)) {
 			return makeIssue(`Function definition lacks string-valued name field.`, definition);
 		}
 		// TODO  check parameters and return type
-		context.functionDefinitions[name] = definition;
+		context.functionDefinitions[$id] = definition;
 		return undefined;
 	}
 
@@ -89,27 +103,32 @@ export function evaluate(json: any, context: IContext = createEmptyContext()): a
 	}
 
 	function evaluateLocalValueDefinition(localValueDefinition: sTypes.ILocalValueDefinition, context: IContext): any {
+		const $id = localValueDefinition.$id;
+		if (!$id || !isString($id)) {
+			return makeIssue(`Local value definition lacks an $id field.`, localValueDefinition);
+		}
+
 		const name = localValueDefinition.name;
 		if (!name || !isString(name)) {
 			return makeIssue(`Local value definition lacks a string-valued name field.`, localValueDefinition);
 		}
 
-		context.localValues[name] = localValueDefinition;
+		context.localValues[$id] = localValueDefinition;
 
 		return evaluateInt(localValueDefinition.value, context);
 	}
 
 	function evaluateLocalValueReference(localValueReference: sTypes.ILocalValueReference, context: IContext): any {
-		const name = localValueReference.name;
-		if (!name || !isString(name)) {
-			return makeIssue(`Local value reference has no name.`, localValueReference);
+		const $id = localValueReference.$id;
+		if (!$id || !isString($id)) {
+			return makeIssue(`Local value reference has no $id field.`, localValueReference);
 		}
 
-		if (!(name in context.localValues)) {
-			return makeIssue(`The referenced local value ${name} is not defiend`, localValueReference)
+		if (!($id in context.localValues)) {
+			return makeIssue(`The referenced local value with $id '${$id}' is not defiend`, $id)
 		}
 
-		return evaluateInt(context.localValues[name].value, context);
+		return evaluateInt(localValueById($id, context).value, context);
 	}
 
 	function evaluateValueReference(valueRef: sTypes.IValueReference, context: IContext): any {
