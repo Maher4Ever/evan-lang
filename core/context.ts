@@ -4,9 +4,9 @@ import * as sTypes from "../core/semantics-types_gen";
 
 
 export interface IContext {
-	functionDefinitions: { [name: string]: sTypes.IFunctionDefinition };
+	functionDefinitions: { [$id: string]: sTypes.IFunctionDefinition };
 	letValues: { [name: string]: any };
-	localValues: { [name: string]: sTypes.ILocalValueDefinition }
+	localValues: { [$id: string]: sTypes.ILocalValueDefinition }
 }
 
 export function cloneContext(context: IContext): IContext {
