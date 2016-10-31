@@ -1,8 +1,10 @@
-import {isArray, isObject, isString} from "lodash";
+import {isArray, isObject, isString, extend} from "lodash";
 import {isObservableArray} from "mobx";
+import {v4} from "node-uuid";
 
 
 const TYPE_KEY_NAME = "$sType";
+const ID_KEY_NAME = "$id";
 
 export function isSemanticsTyped(json: any) {
 	if (isObject(json)) {
@@ -12,14 +14,26 @@ export function isSemanticsTyped(json: any) {
 	return false;
 }
 
+export function requiresID(sType: string): boolean {
+	return sType.indexOf("definition") !== -1;
+}
+
 export function sType(json: Object) {
 	return json[TYPE_KEY_NAME];
 }
 
 export function createOfSType(sType: string) {
-	return {
+	let instance = {
 		[TYPE_KEY_NAME]: sType
 	};
+
+	if (requiresID(sType)) {
+		instance = extend(instance, {
+			[ID_KEY_NAME]: v4()
+		});
+	}
+
+	return instance;
 }
 
 
