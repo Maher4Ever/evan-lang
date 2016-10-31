@@ -1,6 +1,7 @@
 [
 	{
 		"$sType": "function definition",
+		"$id": "98a521b6-cac0-4282-8b9c-9691488e119e",
 		"name": "f",
 		"parameters": {},
 		"returnType": "number",
@@ -10,7 +11,7 @@
 		"$sType": "function application",
 		"function": {
 			"$sType": "function reference",
-			"name": "f"
+			"$id": "98a521b6-cac0-4282-8b9c-9691488e119e"
 		},
 		"arguments": {}
 	}

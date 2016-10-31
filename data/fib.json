@@ -5,6 +5,7 @@
 	},
 	{
 		"$sType": "function definition",
+		"$id": "25ad27e7-6aaa-479b-a781-1ac9264c8900",
 		"name": "fib",
 		"parameters": {
 			"n": "number"
@@ -29,7 +30,7 @@
 					"$sType": "function application",
 					"function": {
 						"$sType": "function reference",
-						"name": "fib"
+						"$id": "25ad27e7-6aaa-479b-a781-1ac9264c8900",
 					},
 					"arguments": {
 						"n": {
@@ -47,7 +48,7 @@
 					"$sType": "function application",
 					"function": {
 						"$sType": "function reference",
-						"name": "fib"
+						"$id": "25ad27e7-6aaa-479b-a781-1ac9264c8900",
 					},
 					"arguments": {
 						"n": {
@@ -69,7 +70,7 @@
 			"$sType": "function application",
 			"function": {
 				"$sType": "function reference",
-				"name": "fib"
+				"$id": "25ad27e7-6aaa-479b-a781-1ac9264c8900",
 			},
 			"arguments": {
 				"n": 0
@@ -79,7 +80,7 @@
 			"$sType": "function application",
 			"function": {
 				"$sType": "function reference",
-				"name": "fib"
+				"$id": "25ad27e7-6aaa-479b-a781-1ac9264c8900",
 			},
 			"arguments": {
 				"n": 1
@@ -89,7 +90,7 @@
 			"$sType": "function application",
 			"function": {
 				"$sType": "function reference",
-				"name": "fib"
+				"$id": "25ad27e7-6aaa-479b-a781-1ac9264c8900",
 			},
 			"arguments": {
 				"n": 2
@@ -99,7 +100,7 @@
 			"$sType": "function application",
 			"function": {
 				"$sType": "function reference",
-				"name": "fib"
+				"$id": "25ad27e7-6aaa-479b-a781-1ac9264c8900",
 			},
 			"arguments": {
 				"n": 3
@@ -109,7 +110,7 @@
 			"$sType": "function application",
 			"function": {
 				"$sType": "function reference",
-				"name": "fib"
+				"$id": "25ad27e7-6aaa-479b-a781-1ac9264c8900",
 			},
 			"arguments": {
 				"n": 4
@@ -119,7 +120,7 @@
 			"$sType": "function application",
 			"function": {
 				"$sType": "function reference",
-				"name": "fib"
+				"$id": "25ad27e7-6aaa-479b-a781-1ac9264c8900",
 			},
 			"arguments": {
 				"n": 5
@@ -129,7 +130,7 @@
 			"$sType": "function application",
 			"function": {
 				"$sType": "function reference",
-				"name": "fib"
+				"$id": "25ad27e7-6aaa-479b-a781-1ac9264c8900",
 			},
 			"arguments": {
 				"n": 6

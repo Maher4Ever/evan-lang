@@ -1,18 +1,21 @@
 [
 	{
 		"$sType": "local value definition",
+		"$id": "37b97e51-cdcd-452d-bee6-e19fb3ad479f",
 		"name": "x",
 		"type": "number",
 		"value": 2
 	},
 	{
 		"$sType": "local value definition",
+		"$id": "0a9a2590-3216-4288-b509-9062d9f62484",
 		"name": "y",
 		"type": "number",
 		"value": 3
 	},
 	{
 		"$sType": "local value definition",
+		"$id": "fb590d6f-2636-4d9a-83ae-2aecc36e8599",
 		"name": "z",
 		"type": "number",
 		"value": {
@@ -20,11 +23,11 @@
 			"operator": "+",
 			"left": {
 				"$sType": "local value reference",
-				"name": "x"
+				"$id": "37b97e51-cdcd-452d-bee6-e19fb3ad479f",
 			},
 			"right": {
 				"$sType": "local value reference",
-				"name": "y"
+				"$id": "0a9a2590-3216-4288-b509-9062d9f62484",
 			}
 		}
 	}
