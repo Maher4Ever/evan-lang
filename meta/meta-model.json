@@ -31,6 +31,7 @@
 	},
 	"function definition": {
 		"properties": {
+			"$id": { "type": "string" },
 			"name": { "type": "string" },
 			"parameters": { "type": "string", "stringMap": true },
 			"returnType": { "type": "string", "optional": true },
@@ -43,7 +44,7 @@
 	},
 	"function reference": {
 		"properties": {
-			"name": { "type": "string" }
+			"$id": { "type": "string" }
 		},
 		"description": {
 			"$sType": "comments",
@@ -74,6 +75,7 @@
 	},
 	"local value definition": {
 		"properties": {
+			"$id": { "type": "string" },
 			"name": { "type": "string" },
 			"type": { "type": "string", "optional": true },
 			"value": { "type": "any" }
@@ -85,7 +87,7 @@
 	},
 	"local value reference": {
 		"properties": {
-			"name": { "type": "string" }
+			"$id": { "type": "string" }
 		},
 		"description": {
 			"$sType": "comments",
